@@ -1,0 +1,8 @@
+---
+synapse_shared_secret: "{{ vault_synapse_shared_secret }}"
+synapse_name: matrix.turtlesnet.cloud
+certbot_auto_renew: true
+certbot_auto_renew_user: root
+certbot_email: "{{ vault_certbot_email }}"
+certbot_cloudflare_api_token: "{{ dns_cloudflare_api_key }}"
+certbot_domain: matrix.turtlesnet.cloud

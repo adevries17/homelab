@@ -1,0 +1,24 @@
+---
+all:
+  children:
+    proxmox:
+      hosts:
+        saturn2:
+          ansible_ssh_user: root
+        jezreel:
+          ansible_ssh_user: root
+
+    tailscales:
+      hosts:
+        suse-proxy:
+          ansible_ssh_user: root
+    matrix:
+      hosts:
+        linode1:
+          ansible_ssh_user: root
+          ansible_host: 45.33.114.40
+        synapse:
+    ungrouped:
+      hosts:
+        teamspeak5:
+        umbrel:

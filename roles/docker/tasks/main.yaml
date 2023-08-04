@@ -1,0 +1,23 @@
+---
+- name: Install docker engine.
+  ansible.builtin.package:
+    name: docker
+    state: present
+  become: true
+- name: Install docker compose.
+  ansible.builtin.pip:
+    name: docker-compose
+    state: absent
+  become: true
+- name: Configure user for docker permissions.
+  ansible.builtin.user:
+    name: adevries
+    groups: docker
+    append: true
+  become: true
+- name: Enable docker daemon at startup.
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  become: true

@@ -1,0 +1,11 @@
+---
+- name: Install common packages.
+  ansible.builtin.package:
+    name:
+      - tmux
+      - sudo
+      - git
+      - htop
+    state: present
+    update_cache: true
+  become: true
