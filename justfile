@@ -14,5 +14,5 @@ deps:
 vault ACTION:
     ansible-vault {{ACTION}} vars/vault.yaml
 
-terraform:
+tf:
     terraform apply
