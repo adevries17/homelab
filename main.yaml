@@ -9,6 +9,7 @@
   tags:
     - all
 
+
 - name: Setup proxy server.
   hosts: suse-proxy
   vars_files:
@@ -18,7 +19,6 @@
     - nginx
   tags:
     - proxy
-
   tasks:
     - name: Configure default nginx config file.
       ansible.builtin.template:
@@ -51,7 +51,6 @@
   become: true
   tags:
     - umbrel
-
   tasks:
     - name: Set hostname
       ansible.builtin.hostname:
@@ -63,7 +62,6 @@
   hosts: linode1
   tags:
     - linode1
-
   tasks:
     - name: Configure hostname.
       ansible.builtin.hostname:
@@ -76,12 +74,10 @@
     - vars/vault.yaml
   tags:
     - synapse
-
   tasks:
     - name: Configure hostname.
       ansible.builtin.hostname:
         name: synapse
-
     - name: Create Zakk.
       ansible.builtin.user:
         name: zakk
@@ -91,7 +87,6 @@
         password: "{{ zakk_pw | password_hash('sha512') }}"
         update_password: on_create
       become: true
-
     - name: Setup Zakk's key
       ansible.posix.authorized_key:
         user: zakk
