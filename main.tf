@@ -173,3 +173,41 @@ resource "cloudflare_record" "dmarc_devzone" {
 
 
 ### PROXMOX
+resource "proxmox_vm_qemu" "jellyfin" {
+  agent        = 1
+  boot         = "c"
+  bootdisk     = "scsi0"
+  ciuser       = var.ciuser
+  cores        = 1
+  desc         = "jellyfin server"
+  ipconfig0    = "ip=dhcp"
+  memory       = 8192
+  name         = "jellyfin"
+  nameserver   = "192.168.17.1"
+  numa         = true
+  onboot       = true
+  qemu_os      = "l26"
+  scsihw       = "virtio-scsi-single"
+  searchdomain = "turtlesnet.cloud"
+  sockets      = 2
+  sshkeys      = join("\n", var.adevries_ssh_keys)
+  target_node  = "jezreel"
+
+  clone      = "debian12"
+  full_clone = true
+
+  disk {
+    discard  = "on"
+    iothread = 1
+    size     = "8G"
+    storage  = "pvevms"
+    type     = "scsi"
+  }
+
+  network {
+    bridge  = "vmbr0"
+    macaddr = "F6:CC:A2:34:B1:30"
+    model   = "virtio"
+    tag     = 250
+  }
+}
