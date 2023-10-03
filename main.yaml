@@ -10,86 +10,12 @@
     - all
 
 
-- name: Setup proxy server.
-  hosts: suse-proxy
-  vars_files:
-    - vars/vault.yaml
-  become: true
-  roles:
-    - nginx
-  tags:
-    - proxy
-  tasks:
-    - name: Configure default nginx config file.
-      ansible.builtin.template:
-        src: templates/nginx.conf.j2
-        dest: /etc/nginx/nginx.conf
-        mode: "0644"
-    - name: Configure proxy configuration.
-      ansible.builtin.template:
-        src: templates/matrix.conf.j2
-        dest: /etc/nginx/conf.d/proxy.conf
-        mode: "0600"
-      notify: Restart_nginx
-
-
-- name: Setup Teamspeak server.
-  hosts: teamspeak5
-  vars_files:
-    - vars/vault.yaml
+- name: Configure docker hosts.
+  hosts: docker
   roles:
     - geerlingguy.docker
-  tags:
-    - teamspeak
-  become: true
-
-
-- name: Setup Umbrel server.
-  hosts: umbrel
-  vars_files:
-    - vars/vault.yaml
-  become: true
-  tags:
-    - umbrel
-  tasks:
-    - name: Set hostname
-      ansible.builtin.hostname:
-        name: umbrel
-      become: true
-
-
-- name: Setup linode1 instance.
-  hosts: linode1
-  tags:
-    - linode1
-  tasks:
-    - name: Configure hostname.
-      ansible.builtin.hostname:
-        name: linode1
-
-
-- name: Configure synapse server.
-  hosts: synapse
   vars_files:
     - vars/vault.yaml
   tags:
-    - synapse
-  tasks:
-    - name: Configure hostname.
-      ansible.builtin.hostname:
-        name: synapse
-    - name: Create Zakk.
-      ansible.builtin.user:
-        name: zakk
-        groups: sudo
-        append: true
-        state: present
-        password: "{{ zakk_pw | password_hash('sha512') }}"
-        update_password: on_create
-      become: true
-    - name: Setup Zakk's key
-      ansible.posix.authorized_key:
-        user: zakk
-        state: present
-        key: "{{ zakk_key }}"
-      become: true
+    - docker
+  become: true

@@ -1,11 +1,4 @@
 ### CLOUDFLARE
-resource "cloudflare_record" "proxy" {
-  zone_id = var.tzone
-  name    = "proxy"
-  type    = "A"
-  value   = "194.195.220.81"
-  comment = "linode reverse proxy"
-}
 resource "cloudflare_record" "gunnermc" {
   zone_id = var.tzone
   name    = "gunnermc"
@@ -16,7 +9,7 @@ resource "cloudflare_record" "root" {
   zone_id = var.tzone
   name    = "turtlesnet.cloud"
   type    = "A"
-  value   = "194.195.220.81"
+  value   = "172.234.29.206"
 }
 resource "cloudflare_record" "dkim1" {
   zone_id = var.tzone
@@ -39,15 +32,8 @@ resource "cloudflare_record" "dkim3" {
 resource "cloudflare_record" "matrix" {
   zone_id = var.tzone
   name    = "matrix"
-  type    = "CNAME"
-  value   = "proxy.turtlesnet.cloud"
-}
-resource "cloudflare_record" "teamspeak" {
-  zone_id = var.tzone
-  name    = "ts"
-  type    = "CNAME"
-  value   = "gunnermc.turtlesnet.cloud"
-  comment = "teamspeak"
+  type    = "A"
+  value   = "172.234.29.206"
 }
 resource "cloudflare_record" "mx1" {
   zone_id  = var.tzone
@@ -184,23 +170,6 @@ resource "cloudflare_record" "dmarc_devzone" {
 
 
 ### LINODE
-resource "linode_instance" "linode1" {
-  label           = "linode1"
-  image           = "linode/debian12"
-  region          = "us-central"
-  type            = "g6-nanode-1"
-  backups_enabled = true
-
-  authorized_keys = flatten([
-    var.adevries_ssh_keys,
-    var.helper_keys
-  ])
-
-  tags = [
-    "matrix",
-    "synapse"
-  ]
-}
 
 
 ### PROXMOX
