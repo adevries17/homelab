@@ -5,7 +5,6 @@
       - tmux
       - sudo
       - git
-      - htop
     state: present
     update_cache: true
   become: true
