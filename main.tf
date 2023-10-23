@@ -204,6 +204,13 @@ resource "proxmox_vm_qemu" "jellyfin" {
     type     = "scsi"
   }
 
+  disk {
+    discard  = "on"
+    iothread = 1
+    size     = "32G"
+    storage  = "pvevms"
+    type     = "scsi"
+  }
   network {
     bridge  = "vmbr0"
     macaddr = "F6:CC:A2:34:B1:30"
