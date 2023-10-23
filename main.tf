@@ -1,7 +1,7 @@
 ### CLOUDFLARE
-resource "cloudflare_record" "gunnermc" {
+resource "cloudflare_record" "gunnerarma3" {
   zone_id = var.tzone
-  name    = "gunnermc"
+  name    = "gunnerarma3"
   type    = "A"
   value   = "98.212.107.220"
 }
