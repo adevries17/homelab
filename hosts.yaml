@@ -12,7 +12,7 @@ all:
     docker:
       hosts:
         jellyfin:
+        gunnerarma3:
     ungrouped:
       hosts:
-        gunnermc:
         avorion:

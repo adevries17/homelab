@@ -218,3 +218,35 @@ resource "proxmox_vm_qemu" "jellyfin" {
     tag     = 250
   }
 }
+resource "proxmox_vm_qemu" "gunnerarma3" {
+  agent       = 1
+  ciuser      = var.ciuser
+  name        = "gunnerarma3"
+  desc        = "gunner's arma 3 server"
+  target_node = "jezreel"
+  sshkeys     = join("\n", var.adevries_ssh_keys)
+
+  clone      = "jammy-server"
+  full_clone = true
+
+  memory    = 32768
+  sockets   = 2
+  cores     = 3
+  scsihw    = "virtio-scsi-single"
+  ipconfig0 = "ip=dhcp"
+  qemu_os   = "l26"
+
+  disk {
+    backup   = true
+    discard  = "on"
+    iothread = 1
+    size     = "8G"
+    storage  = "pvevms"
+    type     = "scsi"
+  }
+  network {
+    bridge  = "vmbr0"
+    macaddr = "56:80:8C:88:1F:AA"
+    model   = "virtio"
+  }
+}
