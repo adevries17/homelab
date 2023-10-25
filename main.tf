@@ -5,6 +5,12 @@ resource "cloudflare_record" "gunnerarma3" {
   type    = "A"
   value   = "98.212.107.220"
 }
+resource "cloudflare_record" "avorion" {
+  zone_id = var.tzone
+  name    = "avorion"
+  type    = "A"
+  value   = "98.212.107.220"
+}
 resource "cloudflare_record" "root" {
   zone_id = var.tzone
   name    = "turtlesnet.cloud"
