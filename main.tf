@@ -225,6 +225,7 @@ resource "proxmox_vm_qemu" "gunnerarma3" {
   desc        = "gunner's arma 3 server"
   target_node = "jezreel"
   sshkeys     = join("\n", var.adevries_ssh_keys)
+  onboot      = true
 
   clone      = "jammy-server"
   full_clone = true
@@ -235,12 +236,13 @@ resource "proxmox_vm_qemu" "gunnerarma3" {
   scsihw    = "virtio-scsi-single"
   ipconfig0 = "ip=dhcp"
   qemu_os   = "l26"
+  cpu       = "kvm64"
 
   disk {
     backup   = true
     discard  = "on"
     iothread = 1
-    size     = "8G"
+    size     = "256G"
     storage  = "pvevms"
     type     = "scsi"
   }
