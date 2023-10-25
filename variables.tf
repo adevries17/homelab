@@ -33,8 +33,8 @@ variable "adevries_ssh_keys" {
   type = list(string)
   default = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq41eVSw7Wqr5BGirXbi1JPBSpwTND9Jmt7War7ixUF adevries@advdesktop",
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG5DP6uLRik0wJTga7pQEXLQmCX0vcuxQ2BDr6BMLit8 adevries@advpangolin",
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIO8ONk9EkTJF+DQBQbFjOwQ2E+n96+4CyKbLvRnsbu adevries17@adevries-win"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIO8ONk9EkTJF+DQBQbFjOwQ2E+n96+4CyKbLvRnsbu adevries17@adevries-win",
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwLTqsnjwjg3fquvo9xd7leQ6xUu1U2KzLa0St9zIyB adevries@adv-fedora"
   ]
 }
 variable "helper_keys" {
