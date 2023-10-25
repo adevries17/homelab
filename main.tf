@@ -250,3 +250,35 @@ resource "proxmox_vm_qemu" "gunnerarma3" {
     model   = "virtio"
   }
 }
+resource "proxmox_vm_qemu" "nextcloud" {
+  agent       = 1
+  ciuser      = var.ciuser
+  name        = "nextcloud"
+  desc        = "nextcloud personal home cloud"
+  target_node = "jezreel"
+  sshkeys     = join("\n", var.adevries_ssh_keys)
+  onboot      = true
+
+  clone      = "jammy-server"
+  full_clone = true
+  cores      = 2
+  sockets    = 2
+  memory     = 8192
+  scsihw     = "virtio-scsi-single"
+  ipconfig0  = "ip=dhcp"
+  qemu_os    = "l26"
+
+  disk {
+    backup   = "true"
+    discard  = "on"
+    iothread = 1
+    size     = "8G"
+    storage  = "pvevms"
+    type     = "scsi"
+  }
+  network {
+    bridge  = "vmbr0"
+    model   = "virtio"
+    macaddr = "B6:41:13:C8:E5:DC"
+  }
+}

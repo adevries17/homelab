@@ -13,6 +13,7 @@ all:
       hosts:
         jellyfin:
         gunnerarma3:
+        nextcloud:
     ungrouped:
       hosts:
         avorion:
