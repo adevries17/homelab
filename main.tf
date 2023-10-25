@@ -269,6 +269,7 @@ resource "proxmox_vm_qemu" "nextcloud" {
   scsihw     = "virtio-scsi-single"
   ipconfig0  = "ip=dhcp"
   qemu_os    = "l26"
+  cpu        = "kvm64"
 
   disk {
     backup   = "true"
