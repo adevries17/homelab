@@ -1,4 +1,31 @@
 ---
+- name: Configure ansible controllers.
+  hosts: localhost
+  roles:
+    - common
+    - geerlingguy.docker
+  vars_files:
+    - vars/vault.yaml
+  tags: controllers
+  become: true
+  tasks:
+    - name: Install common tools
+      ansible.builtin.package:
+        name:
+          - just
+        state: present
+      become: true
+
+    - name: Configure hosts file.
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: |
+          # billadeau things
+          10.50.121.230 gitlabs.zabilladeau.com gitlabs
+        marker: "# {mark} ANSIBLE MANAGED"
+      become: true
+
+
 - name: Configure all hosts.
   hosts: all
   roles:
