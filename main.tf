@@ -238,7 +238,7 @@ resource "proxmox_vm_qemu" "gunnerarma3" {
 
   memory    = 32768
   sockets   = 2
-  cores     = 3
+  cores     = 6
   scsihw    = "virtio-scsi-single"
   ipconfig0 = "ip=dhcp"
   qemu_os   = "l26"
