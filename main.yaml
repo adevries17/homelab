@@ -21,8 +21,9 @@
         path: /etc/hosts
         block: |
           # billadeau things
-          10.50.121.230 gitlabs.zabilladeau.com gitlabs
+          100.110.172.147 gitlabs.zabilladeau.com gitlabs
         marker: "# {mark} ANSIBLE MANAGED"
+        state: present
       become: true
 
 
