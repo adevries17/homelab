@@ -26,6 +26,12 @@
         state: present
       become: true
 
+    - name: Install pip tools.
+      ansible.builtin.pip:
+        name:
+          - linode-cli
+        state: present
+
 
 - name: Configure all hosts.
   hosts: all
