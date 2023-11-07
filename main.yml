@@ -5,7 +5,7 @@
     - common
     - geerlingguy.docker
   vars_files:
-    - vars/vault.yaml
+    - vars/vault.yml
   tags: controllers
   become: true
   tasks:
@@ -45,7 +45,7 @@
     - common
     - artis3n.tailscale
   vars_files:
-    - vars/vault.yaml
+    - vars/vault.yml
   tags:
     - all
 
@@ -55,7 +55,7 @@
   roles:
     - geerlingguy.docker
   vars_files:
-    - vars/vault.yaml
+    - vars/vault.yml
   tags:
     - docker
   become: true
