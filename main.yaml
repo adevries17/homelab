@@ -19,9 +19,6 @@
           - gcc
           - clang
           - make
-          - rust
-          - cargo
-          - rustfmt
         state: present
       become: true
 
