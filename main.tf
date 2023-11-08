@@ -282,7 +282,7 @@ resource "proxmox_vm_qemu" "nextcloud" {
     discard  = "on"
     iothread = 1
     size     = "8G"
-    storage  = "pvevms"
+    storage  = "local-lvm"
     type     = "scsi"
   }
   network {
