@@ -1,0 +1,61 @@
+---
+- name: Configure ansible controllers.
+  hosts: localhost
+  roles:
+    - common
+    - geerlingguy.docker
+  vars_files:
+    - vars/vault.yaml
+  tags: controllers
+  become: true
+  tasks:
+    - name: Install common tools
+      ansible.builtin.dnf:
+        name:
+          - just
+          # rust dependencies
+          - dnf-plugins-core
+          - cmake
+          - gcc
+          - clang
+          - make
+        state: present
+      become: true
+
+    - name: Configure hosts file.
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: |
+          # billadeau things
+          100.110.172.147 gitlabs.zabilladeau.com gitlabs
+        marker: "# {mark} ANSIBLE MANAGED"
+        state: present
+      become: true
+
+    - name: Install pip tools.
+      ansible.builtin.pip:
+        name:
+          - linode-cli
+        state: present
+
+
+- name: Configure all hosts.
+  hosts: all
+  roles:
+    - common
+    - artis3n.tailscale
+  vars_files:
+    - vars/vault.yaml
+  tags:
+    - all
+
+
+- name: Configure docker hosts.
+  hosts: docker
+  roles:
+    - geerlingguy.docker
+  vars_files:
+    - vars/vault.yaml
+  tags:
+    - docker
+  become: true
