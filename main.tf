@@ -249,7 +249,7 @@ resource "proxmox_vm_qemu" "gunnerarma3" {
     discard  = "on"
     iothread = 1
     size     = "256G"
-    storage  = "pvevms"
+    storage  = "local-lvm"
     type     = "scsi"
   }
   network {
