@@ -7,12 +7,12 @@ terraform {
 
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "2.9.14"
+      version = "~>2.9"
     }
 
     linode = {
       source  = "linode/linode"
-      version = "2.5.1"
+      version = "~>2.9"
     }
   }
 }
