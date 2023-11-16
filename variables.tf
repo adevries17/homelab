@@ -32,7 +32,7 @@ variable "linode_token" {
 variable "adevries_ssh_keys" {
   type = list(string)
   default = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq41eVSw7Wqr5BGirXbi1JPBSpwTND9Jmt7War7ixUF adevries@advdesktop",
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERot6u2EvkH3GgaNJWsWIfjJlVIBYImjOliCQ0y6TQt adevries@advfedoradt",
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIO8ONk9EkTJF+DQBQbFjOwQ2E+n96+4CyKbLvRnsbu adevries17@adevries-win",
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwLTqsnjwjg3fquvo9xd7leQ6xUu1U2KzLa0St9zIyB adevries@adv-fedora"
   ]
