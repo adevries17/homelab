@@ -6,7 +6,6 @@
   vars_files:
     - vars/vault.yml
   tags: controllers
-  become: true
   tasks:
     - name: Install common tools
       ansible.builtin.dnf:
@@ -28,16 +27,18 @@
       become: true
 
     - name: Configure git username
-      community.general.git_config:
+      community.ansible.git_config:
         name: user.name
         scope: global
         value: "Andrew DeVries"
+      become: false
 
     - name: Configure git email
       community.general.git_config:
         name: user.email
         scope: global
         value: "andrew@andrewdevries.net"
+      become: false
 
     - name: Configure hosts file.
       ansible.builtin.blockinfile:
