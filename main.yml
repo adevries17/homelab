@@ -18,8 +18,12 @@
           - gcc
           - clang
           - make
+          # container stuff
           - podman
           - podman-compose
+          # ansible stuff
+          - python3-pip
+          - ansible-lint
         state: present
       become: true
 
