@@ -3,7 +3,6 @@
   hosts: localhost
   roles:
     - common
-    - geerlingguy.docker
   vars_files:
     - vars/vault.yml
   tags: controllers
@@ -19,8 +18,22 @@
           - gcc
           - clang
           - make
+          - podman
+          - podman-compose
         state: present
       become: true
+
+    - name: Configure git username
+      community.general.git_config:
+        name: user.name
+        scope: global
+        value: "Andrew DeVries"
+
+    - name: Configure git email
+      community.general.git_config:
+        name: user.email
+        scope: global
+        value: "andrew@andrewdevries.net"
 
     - name: Configure hosts file.
       ansible.builtin.blockinfile:
