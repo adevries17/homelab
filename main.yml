@@ -27,7 +27,7 @@
       become: true
 
     - name: Configure git username
-      community.ansible.git_config:
+      community.general.git_config:
         name: user.name
         scope: global
         value: "Andrew DeVries"
@@ -56,6 +56,49 @@
           - linode-cli
         state: present
 
+    - name: Create ssh config.
+      ansible.builtin.file:
+        path: ~/.ssh/config
+        state: touch
+        mode: "0600"
+
+    - name: Configure ssh client.
+      ansible.builtin.blockinfile:
+        path: ~/.ssh/config
+        block: |
+          # serverswitch
+          Host serversw
+            KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+            PubkeyAcceptedAlgorithms +ssh-rsa
+            HostKeyAlgorithms +ssh-rsa
+            User admin
+            HostName 172.19.30.10
+
+          # copyswitch
+          Host copysw
+            KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+            PubkeyAcceptedAlgorithms +ssh-rsa
+            HostKeyAlgorithms +ssh-rsa
+            User admin
+            HostName 172.19.30.11
+
+          # balcony switch
+          Host balcsw
+            KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+            PubkeyAcceptedAlgorithms +ssh-rsa
+            HostKeyAlgorithms +ssh-rsa
+            User admin
+            HostName 172.19.30.12
+
+          # east switch
+          Host eastsw
+            KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+            PubkeyAcceptedAlgorithms +ssh-rsa
+            HostKeyAlgorithms +ssh-rsa
+            User admin
+            HostName 172.19.30.13
+        marker: "# {mark} ANSIBLE MANAGED"
+        state: present
 
 - name: Configure all hosts.
   hosts: all
