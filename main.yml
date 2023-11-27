@@ -120,3 +120,52 @@
   tags:
     - docker
   become: true
+
+
+- name: Configure Jellyfin server.
+  hosts: jellyfin
+  vars_files:
+    - vars/vault.yml
+  tags: shared
+  tasks:
+    - name: Create jellyfin group.
+      ansible.builtin.group:
+        name: jellyfin
+        state: present
+      become: true
+
+    - name: Configure adevries user.
+      ansible.builtin.user:
+        name: adevries
+        state: present
+        groups: jellyfin
+        append: true
+        shell: /bin/bash
+      become: true
+
+    - name: Create dingus user.
+      ansible.builtin.user:
+        name: dingus
+        state: present
+        groups:
+          - dingus
+          - jellyfin
+        append: true
+        shell: /bin/bash
+      become: true
+
+    - name: Add authorized keys to dingus user.
+      ansible.posix.authorized_key:
+        user: dingus
+        key: "{{ dingus_key }}"
+      become: true
+
+    - name: Configure jellyfin directories
+      ansible.builtin.file:
+        path: /mnt/jellyfin/media
+        state: directory
+        mode: "0775"
+        owner: root
+        group: jellyfin
+        recurse: true
+      become: true
