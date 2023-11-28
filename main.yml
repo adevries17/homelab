@@ -3,9 +3,11 @@
   hosts: localhost
   roles:
     - common
+    - geerlingguy.docker
   vars_files:
     - vars/vault.yml
   tags: controllers
+  become: true
   tasks:
     - name: Install common tools
       ansible.builtin.dnf:
@@ -17,9 +19,6 @@
           - gcc
           - clang
           - make
-          # container stuff
-          - podman
-          - podman-compose
           # ansible stuff
           - python3-pip
           - ansible-lint
@@ -55,12 +54,14 @@
         name:
           - linode-cli
         state: present
+      become: false
 
     - name: Create ssh config.
       ansible.builtin.file:
         path: ~/.ssh/config
         state: touch
         mode: "0600"
+      become: false
 
     - name: Configure ssh client.
       ansible.builtin.blockinfile:
@@ -99,6 +100,7 @@
             HostName 172.19.30.13
         marker: "# {mark} ANSIBLE MANAGED"
         state: present
+      become: false
 
 - name: Configure all hosts.
   hosts: all
