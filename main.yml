@@ -60,6 +60,8 @@
       ansible.builtin.file:
         path: ~/.ssh/config
         state: touch
+        modification_time: preserve
+        access_time: preserve
         mode: "0600"
       become: false
 
@@ -67,6 +69,10 @@
       ansible.builtin.blockinfile:
         path: ~/.ssh/config
         block: |
+          # cubestream
+          Host cubes
+            user andrew
+            HostName cubestream.com
           # serverswitch
           Host serversw
             KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
