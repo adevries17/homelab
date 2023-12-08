@@ -34,7 +34,7 @@ variable "adevries_ssh_keys" {
   default = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq41eVSw7Wqr5BGirXbi1JPBSpwTND9Jmt7War7ixUF adevries@advdesktop",
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIO8ONk9EkTJF+DQBQbFjOwQ2E+n96+4CyKbLvRnsbu adevries17@adevries-win",
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwLTqsnjwjg3fquvo9xd7leQ6xUu1U2KzLa0St9zIyB adevries@adv-fedora"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICNlmXmn2ycEDz0Sm7bSXA/jP4T0hm31I2iAIzq3iues adevries@fedoratop"
   ]
 }
 variable "helper_keys" {
