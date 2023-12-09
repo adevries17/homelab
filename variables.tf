@@ -1,27 +1,3 @@
-### proxmox vars
-variable "pm_api_token_id" {
-  sensitive = true
-}
-variable "pm_api_token_secret" {
-  sensitive = true
-}
-variable "ciuser" {
-  type    = string
-  default = "adevries"
-}
-variable "debian" {
-  type    = string
-  default = "debian12"
-}
-variable "jammy" {
-  type    = string
-  default = "jammy-server"
-}
-variable "alma" {
-  type    = string
-  default = "alma9"
-}
-
 ### linode vars
 variable "linode_token" {
   sensitive = true
