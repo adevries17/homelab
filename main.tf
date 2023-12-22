@@ -3,13 +3,13 @@ resource "cloudflare_record" "gunner" {
   zone_id = var.tzone
   name    = "gunner"
   type    = "A"
-  value   = "98.212.107.220"
+  value   = "98.32.174.101"
 }
 resource "cloudflare_record" "avorion" {
   zone_id = var.tzone
   name    = "avorion"
   type    = "A"
-  value   = "98.212.107.220"
+  value   = "98.32.174.101"
 }
 resource "cloudflare_record" "root" {
   zone_id = var.tzone
